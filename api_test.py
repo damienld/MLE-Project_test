@@ -79,11 +79,11 @@ dict_tests_expected_results ={
     'text_to_sentiment#{sentence}#1#alice1#wonderland'.format(sentence=lst_sentences[0]): (401, ''), #test => bad username
     'text_to_sentiment#{sentence}#1#alice#wonderland1'.format(sentence=lst_sentences[0]): (401, ''), #test => bad password
     'text_to_sentiment#{sentence}#6#alice#wonderland'.format(sentence=lst_sentences[0]): (422, ''),  #test bad model_index=6 => status 422
-    'text_to_sentiment#{sentence}#1#alice#wonderland'.format(sentence=lst_sentences[0]): (200, '[1]'), #test => score = 
-    'text_to_sentiment#{sentence}#1#alice#wonderland'.format(sentence=lst_sentences[1]): (200, '[3]'), #test => score = 
-    'text_to_sentiment#{sentence}#2#alice#wonderland'.format(sentence=lst_sentences[2]): (200, '[4]'), #test => score = 
-    'text_to_sentiment#{sentence}#3#alice#wonderland'.format(sentence=lst_sentences[3]): (200, '[3]'), #test => score = 
-    'text_to_sentiment#{sentence}#4#alice#wonderland'.format(sentence=lst_sentences[4]): (200, '[2]') #test => score = 
+    'text_to_sentiment#{sentence}#1#alice#wonderland'.format(sentence=lst_sentences[0]): (200, '[1]'), #test => score = 1
+    'text_to_sentiment#{sentence}#1#alice#wonderland'.format(sentence=lst_sentences[1]): (200, '[3]'), #test => score = 3
+    'text_to_sentiment#{sentence}#2#alice#wonderland'.format(sentence=lst_sentences[2]): (200, '[4]'), #test => score = 4
+    'text_to_sentiment#{sentence}#3#alice#wonderland'.format(sentence=lst_sentences[3]): (200, '[3]'), #test => score = 3
+    'text_to_sentiment#{sentence}#4#alice#wonderland'.format(sentence=lst_sentences[4]): (200, '[2]') #test => score = 2
 }
 
 #REQUEST
@@ -140,11 +140,3 @@ Request done at "/{endpoint}"
 
 stroutput=(output.format(sentence=(test_sentence if len(test_sentence) < 80 else test_sentence[0:80] + "..."), expected_status=expected_result[0], expected_score=expected_result[1], username=test_username, password=test_password, endpoint=api_endpoint, request_status=request_status, test_status=test_status, request_score=request_score, model_index=test_model_index))
 print(stroutput)
-
-'''
-# impression dans un fichier
-#if os.environ.get('LOG') == 1:
-with open('/home/api_test.log', 'a') as file:
-    file.write(stroutput)
-    file.close() 
-'''
